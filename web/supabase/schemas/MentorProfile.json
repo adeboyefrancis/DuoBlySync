@@ -1,0 +1,142 @@
+{
+  "name": "MentorProfile",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user who owns this mentor profile"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Public display name"
+    },
+    "avatar_url": {
+      "type": "string",
+      "description": "Profile photo URL"
+    },
+    "headline": {
+      "type": "string",
+      "description": "Short professional headline"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Detailed professional biography"
+    },
+    "industry": {
+      "type": "string",
+      "enum": [
+        "technology",
+        "digital_marketing",
+        "data_science",
+        "cybersecurity",
+        "cloud_computing",
+        "software_engineering",
+        "product_management",
+        "ux_design",
+        "devops",
+        "ai_ml",
+        "business_analysis",
+        "project_management",
+        "other"
+      ],
+      "description": "Primary industry"
+    },
+    "years_experience": {
+      "type": "number",
+      "description": "Years of professional experience"
+    },
+    "job_title": {
+      "type": "string",
+      "description": "Current job title"
+    },
+    "company": {
+      "type": "string",
+      "description": "Current company or organization"
+    },
+    "sfia_skills": {
+      "type": "array",
+      "description": "List of SFIA skill IDs with proficiency levels",
+      "items": {
+        "type": "object",
+        "properties": {
+          "skill_id": {
+            "type": "string"
+          },
+          "skill_name": {
+            "type": "string"
+          },
+          "sfia_level": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "mentorship_topics": {
+      "type": "array",
+      "description": "Topics the mentor can guide on",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mentorship_style": {
+      "type": "string",
+      "enum": [
+        "structured",
+        "flexible",
+        "project_based",
+        "goal_oriented",
+        "exploratory"
+      ],
+      "description": "Preferred mentorship approach"
+    },
+    "availability": {
+      "type": "string",
+      "enum": ["1_hour_week", "2_hours_week", "3_hours_week", "flexible"],
+      "description": "Weekly availability for mentoring"
+    },
+    "communication_preferences": {
+      "type": "array",
+      "description": "Preferred communication formats",
+      "items": {
+        "type": "string",
+        "enum": ["video_call", "voice_call", "text_chat", "email", "in_person"]
+      }
+    },
+    "neurodiversity_support": {
+      "type": "boolean",
+      "description": "Whether the mentor offers neurodiversity-inclusive mentoring"
+    },
+    "max_mentees": {
+      "type": "number",
+      "description": "Maximum number of active mentees"
+    },
+    "active_mentees_count": {
+      "type": "number",
+      "description": "Current number of active mentees",
+      "default": 0
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the profile is currently accepting mentees",
+      "default": true
+    },
+    "location": {
+      "type": "string",
+      "description": "City/Country"
+    },
+    "linkedin_url": {
+      "type": "string",
+      "description": "LinkedIn profile URL"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Average rating from mentees"
+    },
+    "total_sessions": {
+      "type": "number",
+      "description": "Total completed mentorship sessions",
+      "default": 0
+    }
+  },
+  "required": ["user_email", "display_name", "headline", "industry"]
+}

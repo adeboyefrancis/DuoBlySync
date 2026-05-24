@@ -1,0 +1,65 @@
+{
+  "name": "FocusSession",
+  "type": "object",
+  "properties": {
+    "host_email": {
+      "type": "string",
+      "description": "Email of the session host"
+    },
+    "title": {
+      "type": "string",
+      "description": "Focus session title"
+    },
+    "description": {
+      "type": "string",
+      "description": "What the session is about"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "body_doubling",
+        "accountability_checkin",
+        "collaborative_work",
+        "quiet_focus"
+      ],
+      "description": "Type of focus session"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session date and time"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Session duration in minutes"
+    },
+    "max_participants": {
+      "type": "number",
+      "description": "Maximum number of participants"
+    },
+    "participants": {
+      "type": "array",
+      "description": "List of participant emails",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "full", "in_progress", "completed", "cancelled"],
+      "default": "open",
+      "description": "Session status"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "description": "Whether this is a recurring session",
+      "default": false
+    },
+    "recurrence_pattern": {
+      "type": "string",
+      "enum": ["daily", "weekly", "biweekly", "monthly"],
+      "description": "Recurrence pattern if recurring"
+    }
+  },
+  "required": ["host_email", "title", "session_type", "scheduled_date"]
+}

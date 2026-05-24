@@ -1,0 +1,69 @@
+{
+  "name": "Skill",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Skill name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sfia",
+        "custom",
+        "soft_skill",
+        "tool",
+        "language",
+        "certification"
+      ],
+      "description": "Whether this is a SFIA-mapped skill or a custom/non-SFIA skill"
+    },
+    "sfia_code": {
+      "type": "string",
+      "description": "SFIA code if type is sfia (e.g. PROG, ARCH). Leave blank for non-SFIA skills."
+    },
+    "sfia_category": {
+      "type": "string",
+      "enum": [
+        "strategy_architecture",
+        "change_delivery",
+        "development_implementation",
+        "delivery_operation",
+        "skills_quality",
+        "relationships_engagement",
+        "people_skills",
+        "none"
+      ],
+      "description": "SFIA category \u2014 use 'none' for non-SFIA skills"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this skill involves"
+    },
+    "industry_tags": {
+      "type": "array",
+      "description": "Industries this skill is relevant to",
+      "items": {
+        "type": "string"
+      }
+    },
+    "levels_supported": {
+      "type": "array",
+      "description": "Proficiency levels supported (e.g. 1-7 for SFIA, or Beginner/Intermediate/Advanced for custom)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_verified": {
+      "type": "boolean",
+      "description": "Whether this skill has been verified by platform admins",
+      "default": false
+    },
+    "created_by_user": {
+      "type": "boolean",
+      "description": "Whether this skill was submitted by a user (vs seeded by the platform)",
+      "default": false
+    }
+  },
+  "required": ["name", "type"]
+}

@@ -1,0 +1,89 @@
+{
+  "name": "MentorshipGoal",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "ID of the MentorshipMatch"
+    },
+    "mentee_email": {
+      "type": "string",
+      "description": "Mentee's email"
+    },
+    "title": {
+      "type": "string",
+      "description": "Goal title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed goal description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "skill_development",
+        "career_transition",
+        "certification",
+        "project_completion",
+        "networking",
+        "leadership",
+        "other"
+      ],
+      "description": "Goal category"
+    },
+    "target_sfia_skill": {
+      "type": "string",
+      "description": "SFIA skill code this goal targets"
+    },
+    "current_level": {
+      "type": "number",
+      "description": "Current SFIA level for the skill"
+    },
+    "target_level": {
+      "type": "number",
+      "description": "Target SFIA level for the skill"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed",
+        "on_hold",
+        "abandoned"
+      ],
+      "default": "not_started",
+      "description": "Goal status"
+    },
+    "progress_percentage": {
+      "type": "number",
+      "description": "Progress towards goal (0-100)",
+      "default": 0
+    },
+    "target_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Target completion date"
+    },
+    "milestones": {
+      "type": "array",
+      "description": "Milestones within the goal",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "boolean"
+          },
+          "completed_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  },
+  "required": ["match_id", "mentee_email", "title", "category"]
+}
