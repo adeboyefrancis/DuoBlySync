@@ -1,0 +1,54 @@
+{
+  "name": "SFIASkill",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "SFIA skill code (e.g., PROG, TEST, ARCH)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full SFIA skill name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "strategy_architecture",
+        "change_delivery",
+        "development_implementation",
+        "delivery_operation",
+        "skills_quality",
+        "relationships_engagement",
+        "people_skills"
+      ],
+      "description": "SFIA category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Skill description"
+    },
+    "levels_available": {
+      "type": "array",
+      "description": "Which SFIA levels (1-7) this skill covers",
+      "items": {
+        "type": "number"
+      }
+    },
+    "level_descriptions": {
+      "type": "array",
+      "description": "Description for each available level",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": ["code", "name", "category"]
+}

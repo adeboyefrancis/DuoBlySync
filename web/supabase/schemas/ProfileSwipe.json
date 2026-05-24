@@ -1,0 +1,41 @@
+{
+  "name": "ProfileSwipe",
+  "type": "object",
+  "properties": {
+    "swiper_email": {
+      "type": "string",
+      "description": "Email of the user who swiped"
+    },
+    "swiper_role": {
+      "type": "string",
+      "enum": ["mentor", "mentee"],
+      "description": "Role of the swiper"
+    },
+    "target_email": {
+      "type": "string",
+      "description": "Email of the user being swiped on"
+    },
+    "target_role": {
+      "type": "string",
+      "enum": ["mentor", "mentee"],
+      "description": "Role of the target"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["like", "pass", "super_like"],
+      "description": "Swipe action taken"
+    },
+    "is_match": {
+      "type": "boolean",
+      "description": "Whether this swipe resulted in a mutual match",
+      "default": false
+    }
+  },
+  "required": [
+    "swiper_email",
+    "swiper_role",
+    "target_email",
+    "target_role",
+    "action"
+  ]
+}

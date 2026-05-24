@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+
+# Environment variable files
+.env
+.env.local
+.env.development.local
+.env.production.local

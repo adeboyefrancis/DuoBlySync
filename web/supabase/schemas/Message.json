@@ -1,0 +1,44 @@
+{
+  "name": "Message",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "ID of the MentorshipMatch this message belongs to"
+    },
+    "sender_email": {
+      "type": "string",
+      "description": "Email of the message sender"
+    },
+    "receiver_email": {
+      "type": "string",
+      "description": "Email of the message receiver"
+    },
+    "content": {
+      "type": "string",
+      "description": "Message content"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "session_invite",
+        "goal_update",
+        "resource_share",
+        "system"
+      ],
+      "default": "text",
+      "description": "Type of message"
+    },
+    "attachment_url": {
+      "type": "string",
+      "description": "URL of attached file"
+    },
+    "is_read": {
+      "type": "boolean",
+      "description": "Whether the message has been read",
+      "default": false
+    }
+  },
+  "required": ["match_id", "sender_email", "receiver_email", "content"]
+}

@@ -1,0 +1,99 @@
+{
+  "name": "MentorshipSession",
+  "type": "object",
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "description": "ID of the MentorshipMatch"
+    },
+    "mentor_email": {
+      "type": "string",
+      "description": "Mentor's email"
+    },
+    "mentee_email": {
+      "type": "string",
+      "description": "Mentee's email"
+    },
+    "title": {
+      "type": "string",
+      "description": "Session title or topic"
+    },
+    "description": {
+      "type": "string",
+      "description": "Session agenda or description"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled date and time"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Planned duration in minutes"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "one_on_one",
+        "goal_review",
+        "skill_assessment",
+        "career_planning",
+        "body_doubling",
+        "focus_session"
+      ],
+      "description": "Type of session"
+    },
+    "format": {
+      "type": "string",
+      "enum": ["video_call", "voice_call", "text_chat", "in_person"],
+      "description": "Session format"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["scheduled", "in_progress", "completed", "cancelled", "no_show"],
+      "default": "scheduled",
+      "description": "Session status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Session notes and key takeaways"
+    },
+    "action_items": {
+      "type": "array",
+      "description": "Action items from the session",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string"
+          },
+          "assigned_to": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "completed": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "mentor_rating": {
+      "type": "number",
+      "description": "Mentee's rating of the session (1-5)"
+    },
+    "mentee_rating": {
+      "type": "number",
+      "description": "Mentor's rating of the session (1-5)"
+    }
+  },
+  "required": [
+    "match_id",
+    "mentor_email",
+    "mentee_email",
+    "title",
+    "scheduled_date"
+  ]
+}
