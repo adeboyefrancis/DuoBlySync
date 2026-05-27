@@ -1,0 +1,62 @@
+{
+  "name": "MentorshipMatch",
+  "type": "object",
+  "properties": {
+    "mentor_email": {
+      "type": "string",
+      "description": "Mentor's email"
+    },
+    "mentee_email": {
+      "type": "string",
+      "description": "Mentee's email"
+    },
+    "mentor_name": {
+      "type": "string",
+      "description": "Mentor's display name"
+    },
+    "mentee_name": {
+      "type": "string",
+      "description": "Mentee's display name"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "active", "paused", "completed", "cancelled"],
+      "default": "pending",
+      "description": "Current match status"
+    },
+    "matched_skills": {
+      "type": "array",
+      "description": "Skills that aligned in the match",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mentorship_goals": {
+      "type": "string",
+      "description": "Agreed mentorship goals summary"
+    },
+    "sessions_completed": {
+      "type": "number",
+      "description": "Number of completed sessions",
+      "default": 0
+    },
+    "next_session_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Next scheduled session"
+    },
+    "compatibility_score": {
+      "type": "number",
+      "description": "Algorithm-calculated compatibility percentage"
+    },
+    "feedback_mentor": {
+      "type": "number",
+      "description": "Mentor's rating of the relationship (1-5)"
+    },
+    "feedback_mentee": {
+      "type": "number",
+      "description": "Mentee's rating of the relationship (1-5)"
+    }
+  },
+  "required": ["mentor_email", "mentee_email"]
+}

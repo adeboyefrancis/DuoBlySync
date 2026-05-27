@@ -331,6 +331,60 @@ export type Database = {
         }
         Relationships: []
       }
+      mentorship_matches: {
+        Row: {
+          compatibility_score: number | null
+          created_at: string | null
+          feedback_mentee: number | null
+          feedback_mentor: number | null
+          id: string
+          matched_skills: string[] | null
+          mentee_name: string | null
+          mentor_email: string
+          mentor_name: string | null
+          mentorship_goals: string | null
+          next_session_date: string | null
+          sessions_completed: number | null
+          status: Database["public"]["Enums"]["match_status_type"] | null
+          text_email: string
+          updated_at: string | null
+        }
+        Insert: {
+          compatibility_score?: number | null
+          created_at?: string | null
+          feedback_mentee?: number | null
+          feedback_mentor?: number | null
+          id?: string
+          matched_skills?: string[] | null
+          mentee_name?: string | null
+          mentor_email: string
+          mentor_name?: string | null
+          mentorship_goals?: string | null
+          next_session_date?: string | null
+          sessions_completed?: number | null
+          status?: Database["public"]["Enums"]["match_status_type"] | null
+          text_email: string
+          updated_at?: string | null
+        }
+        Update: {
+          compatibility_score?: number | null
+          created_at?: string | null
+          feedback_mentee?: number | null
+          feedback_mentor?: number | null
+          id?: string
+          matched_skills?: string[] | null
+          mentee_name?: string | null
+          mentor_email?: string
+          mentor_name?: string | null
+          mentorship_goals?: string | null
+          next_session_date?: string | null
+          sessions_completed?: number | null
+          status?: Database["public"]["Enums"]["match_status_type"] | null
+          text_email?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       mentorship_sessions: {
         Row: {
           action_items: Json | null
@@ -623,6 +677,12 @@ export type Database = {
         | "completed"
         | "on_hold"
         | "abandoned"
+      match_status_type:
+        | "pending"
+        | "active"
+        | "paused"
+        | "completed"
+        | "cancelled"
       mentorship_style_type:
         | "structured"
         | "flexible"
@@ -881,6 +941,13 @@ export const Constants = {
         "completed",
         "on_hold",
         "abandoned",
+      ],
+      match_status_type: [
+        "pending",
+        "active",
+        "paused",
+        "completed",
+        "cancelled",
       ],
       mentorship_style_type: [
         "structured",
