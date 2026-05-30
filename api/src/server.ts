@@ -1,14 +1,20 @@
 // Import all routes
 import express, { Request, Response } from "express";
+import "dotenv/config"; // Load environment variables from .env file
+import cors from "cors"; // Import CORS wrapper
 import skillRoutes from "./routes/skill.routes";
 import profileRoutes from "./routes/profile.routes";
 import matchRoutes from "./routes/match.routes";
+import messageRoutes from "./routes/message.routes";
+import swipeRoutes from "./routes/swipe.routes";
+import sessionRoutes from "./routes/session.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
 const PORT = process.env.PORT || 5005;
 
-// Middleware to parse JSON bodies
+// Global Entry Processing Middleware
+app.use(cors()); // Allow CORS (Cross-Origin Resource Sharing) request from frontends
 app.use(express.json());
 
 // Heartbeat Verification Route
@@ -24,6 +30,9 @@ app.get("/health", (req: Request, res: Response) => {
 app.use("/api/skills", skillRoutes);
 app.use("/api/profiles", profileRoutes);
 app.use("/api/matches", matchRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/swipes", swipeRoutes);
+app.use("/api/sessions", sessionRoutes);
 
 // Global Error Handling Middleware
 app.use(errorHandler);
