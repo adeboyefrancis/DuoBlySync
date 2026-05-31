@@ -7,18 +7,19 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import PageNotFound from "./lib/PageNotFound";
+import PageNotFound from "@/lib/PageNotFound";
 import { AuthProvider, useAuth } from "@/lib/AuthContext";
 import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 
-import Landing from "./pages/Landing";
-import ProgressDashboard from "./pages/ProgressDashboard";
-import SwipeMatch from "./pages/SwipeMatch";
-import BrowseMentors from "./pages/BrowseMentors";
-import Sessions from "./pages/Sessions";
-import AppLayout from "./components/layout/AppLayout";
-import Chat from "./pages/Chat";
-import { ThemeProvider } from "./lib/ThemeContext";
+import Landing from "@/pages/Landing";
+import ProgressDashboard from "@/pages/ProgressDashboard";
+import SwipeMatch from "@/pages/SwipeMatch";
+import BrowseMentors from "@/pages/BrowseMentors";
+import Sessions from "@/pages/Sessions";
+import AppLayout from "@/components/layout/AppLayout";
+import Chat from "@/pages/Chat";
+import AuthPage from "@/pages/AuthPage";
+import { ThemeProvider } from "@/lib/ThemeContext";
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -54,6 +55,8 @@ const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<AuthPage />} />
+      <Route path="/get-started" element={<AuthPage />} />
       <Route
         path="/*"
         element={
