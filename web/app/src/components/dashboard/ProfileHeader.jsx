@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Camera, MapPin, Pencil, Star, CheckCircle2 } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { axios } from "@/api/DuoBlySyncClient";
 
 export default function ProfileHeader({ user, view }) {
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || null);
@@ -11,8 +11,8 @@ export default function ProfileHeader({ user, view }) {
     const file = e.target.files[0];
     if (!file) return;
     setUploading(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file });
-    await base44.auth.updateMe({ avatar_url: file_url });
+    const { file_url } = await axios.post("/files/upload", { file });
+    await axios.patch("/auth/me", { avatar_url: file_url });
     setAvatarUrl(file_url);
     setUploading(false);
   }

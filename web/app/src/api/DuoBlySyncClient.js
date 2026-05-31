@@ -9,4 +9,8 @@ const DuoBlySyncClient = axios.create({
   },
 });
 
+// 1. Keep your main default wrapper export
 export default DuoBlySyncClient;
+
+// 2. Add the named export so your components can grab the raw axios instance from this module path
+export { axios };

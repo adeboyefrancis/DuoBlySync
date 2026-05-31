@@ -13,8 +13,15 @@ import { errorHandler } from "./middleware/error.middleware";
 const app = express();
 const PORT = process.env.PORT || 5005;
 
-// Global Entry Processing Middleware
-app.use(cors()); // Allow CORS (Cross-Origin Resource Sharing) request from frontends
+// Global Entry Processing Middleware (Allows CORS and JSON parsing for every request)
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Your exact Vite development port
+    credentials: true, // Essential if your authentication routes pass tokens/cookies
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(express.json());
 
 // Heartbeat Verification Route
