@@ -74,8 +74,28 @@ export const appParams = {
     defaultParams.appBaseUrl ||
     (!isNode ? window.location.origin : "http://localhost:3000"),
 
-  // Safely fallback to local token storage if token is absent in URL parameter strings
+  // 🔥 UPDATED: Look for your local Supabase token if Base44 parameters are missing!
   token:
     defaultParams.token ||
-    (!isNode ? localStorage.getItem("base44_access_token") : null),
+    (!isNode
+      ? (() => {
+          // Check old Base44 fallback first
+          const legacyToken = localStorage.getItem("base44_access_token");
+          if (legacyToken) return legacyToken;
+
+          // Otherwise, dynamically find your local Supabase JWT from localStorage keys
+          const supabaseKey = Object.keys(localStorage).find(
+            (key) => key.startsWith("sb-") && key.endsWith("-auth-token"),
+          );
+          if (supabaseKey) {
+            try {
+              const sessionData = JSON.parse(localStorage.getItem(supabaseKey));
+              return sessionData?.access_token || null;
+            } catch (e) {
+              return null;
+            }
+          }
+          return null;
+        })()
+      : null),
 };

@@ -7,19 +7,20 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import PageNotFound from "@/lib/PageNotFound";
+import PageNotFound from "./lib/PageNotFound";
 import { AuthProvider, useAuth } from "@/lib/AuthContext";
 import UserNotRegisteredError from "@/components/UserNotRegisteredError";
 
-import Landing from "@/pages/Landing";
-import ProgressDashboard from "@/pages/ProgressDashboard";
-import SwipeMatch from "@/pages/SwipeMatch";
-import BrowseMentors from "@/pages/BrowseMentors";
-import Sessions from "@/pages/Sessions";
-import AppLayout from "@/components/layout/AppLayout";
-import Chat from "@/pages/Chat";
-import AuthPage from "@/pages/AuthPage";
-import { ThemeProvider } from "@/lib/ThemeContext";
+import Landing from "./pages/Landing";
+import ProgressDashboard from "./pages/ProgressDashboard";
+import SwipeMatch from "./pages/SwipeMatch";
+import BrowseMentors from "./pages/BrowseMentors";
+import Sessions from "./pages/Sessions";
+import AppLayout from "./components/layout/AppLayout";
+import Chat from "./pages/Chat";
+import AuthPage from "./pages/AuthPage"; // 🚀 Fixed: Added missing import here!
+import ApiExplorer from "./pages/ApiExplorer";
+import { ThemeProvider } from "./lib/ThemeContext";
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -56,7 +57,6 @@ const AuthenticatedApp = () => {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<AuthPage />} />
-      <Route path="/get-started" element={<AuthPage />} />
       <Route
         path="/*"
         element={
@@ -67,6 +67,7 @@ const AuthenticatedApp = () => {
               <Route path="/sessions" element={<Sessions />} />
               <Route path="/mentors" element={<BrowseMentors />} />
               <Route path="/chat" element={<Chat />} />
+              <Route path="/api-explorer" element={<ApiExplorer />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </AppLayout>

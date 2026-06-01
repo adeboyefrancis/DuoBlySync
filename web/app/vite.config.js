@@ -25,6 +25,8 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  // Tell Vite to look up in the master root directory for your .env file
+  envDir: path.resolve(__dirname, "../../"),
   server: {
     port: 5173, // Set the development server port as required
   },

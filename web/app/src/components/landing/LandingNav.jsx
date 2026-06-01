@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Moon, Sun, Menu, X, Heart } from "lucide-react";
-import { axios } from "@/api/DuoBlySyncClient";
+// ⚡ Imported useAuth instead of axios
+import { useAuth } from "@/lib/AuthContext";
 import { useTheme } from "@/lib/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,6 +13,8 @@ const navLinks = [
 
 export default function LandingNav() {
   const { theme, toggle } = useTheme();
+  // ⚙️ Grab your localized navigation function
+  const { navigateToLogin } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -78,8 +81,9 @@ export default function LandingNav() {
             )}
           </button>
 
+          {/* ⚡ Fixed Desktop Button */}
           <button
-            onClick={() => axios.auth.redirectToLogin("/dashboard")}
+            onClick={() => navigateToLogin()}
             className="hidden sm:flex px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-105"
           >
             Get Started
@@ -129,10 +133,12 @@ export default function LandingNav() {
                 </a>
               ),
             )}
+
+            {/* ⚡ Fixed Mobile Button */}
             <button
               onClick={() => {
                 setMobileOpen(false);
-                axios.auth.redirectToLogin("/dashboard");
+                navigateToLogin();
               }}
               className="w-full px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold"
             >

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { axios } from "@/api/DuoBlySyncClient";
+import React, { useState } from "react";
+// 🚀 Fixed: Imported useAuth and removed the broken axios import
+import { useAuth } from "@/lib/AuthContext";
 import ProfileHeader from "@/components/dashboard/ProfileHeader";
 import SkillTracker from "@/components/dashboard/SkillTracker";
 import { motion } from "framer-motion";
@@ -360,14 +361,9 @@ function SessionRow({ session, i }) {
 
 export default function ProgressDashboard() {
   const [view, setView] = useState("mentee");
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    axios.auth
-      .me()
-      .then(setUser)
-      .catch(() => {});
-  }, []);
+  // 🚀 Fixed: Extracted user dynamically from your updated local hook (removes broken useEffect setup)
+  const { user } = useAuth();
 
   const stats = view === "mentee" ? menteeStats : mentorStats;
 
@@ -731,7 +727,7 @@ export default function ProgressDashboard() {
         {/* Skill Tracker */}
         {view === "mentee" && <SkillTracker />}
 
-        {/* Neurodiversity &amp; Focus sessions note */}
+        {/* Neurodiversity & Focus sessions note */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

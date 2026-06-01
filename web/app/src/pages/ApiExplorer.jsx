@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth } from "@/lib/AuthContext";
 import { motion } from "framer-motion";
 import {
   Database,
@@ -579,6 +580,8 @@ const allEntities = [
 export default function ApiExplorer() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
+
+  const { user } = useAuth();
 
   const totalFields = allEntities.reduce(
     (sum, e) => sum + Object.keys(e.properties).length,
