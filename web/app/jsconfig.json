@@ -1,6 +1,28 @@
+// {
+//   "compilerOptions": {
+//     "ignoreDeprecations": "6.0",
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     },
+//     "jsx": "react-jsx",
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "lib": ["esnext", "dom"],
+//     "target": "esnext",
+//     "checkJs": true,
+//     "skipLibCheck": true,
+//     "allowSyntheticDefaultImports": true,
+//     "esModuleInterop": true,
+//     "resolveJsonModule": true,
+//     "types": []
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist"]
+// }
+
 {
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -17,6 +39,17 @@
     "resolveJsonModule": true,
     "types": []
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "web/app/src/components/**/*.js",
+    "web/app/src/pages/**/*.jsx",
+    "web/app/src/Layout.jsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/vite-plugins",
+    "src/components/ui",
+    "src/api",
+    "src/lib"
+  ]
 }

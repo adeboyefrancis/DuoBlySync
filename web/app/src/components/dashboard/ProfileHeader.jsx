@@ -3,6 +3,7 @@ import { Camera, MapPin, Pencil, Star, CheckCircle2 } from "lucide-react";
 import { axios } from "@/api/DuoBlySyncClient";
 
 export default function ProfileHeader({ user, view }) {
+  // ⚡ Added fallback optional chaining so it never crashes if user data is loading
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || null);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef();
@@ -10,14 +11,32 @@ export default function ProfileHeader({ user, view }) {
   async function handleFileChange(e) {
     const file = e.target.files[0];
     if (!file) return;
-    setUploading(true);
-    const { file_url } = await axios.post("/files/upload", { file });
-    await axios.patch("/auth/me", { avatar_url: file_url });
-    setAvatarUrl(file_url);
-    setUploading(false);
+
+    try {
+      setUploading(true);
+
+      // 🚀 Format properly for local file uploads using FormData
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await axios.post("/files/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      const file_url = response?.data?.file_url || response?.file_url;
+
+      if (file_url) {
+        await axios.patch("/auth/me", { avatar_url: file_url });
+        setAvatarUrl(file_url);
+      }
+    } catch (error) {
+      console.error("Local avatar upload failed:", error);
+    } finally {
+      setUploading(false);
+    }
   }
 
-  const displayName = user?.full_name || "Your Name";
+  const displayName = user?.full_name || "Your Profile";
   const role = view === "mentor" ? "Mentor" : "Mentee";
   const roleColor =
     view === "mentor"
@@ -80,7 +99,7 @@ export default function ProfileHeader({ user, view }) {
               <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             </div>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {user?.email}
+              {user?.email || "loading local session..."}
             </p>
           </div>
         </div>
